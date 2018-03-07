@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using thoughtless_eels.Data;
+using Triplann.Data;
 
-namespace thoughtless_eels
+namespace Triplann
 {
     public class Startup
     {
@@ -25,7 +25,7 @@ namespace thoughtless_eels
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin", builder =>
-                    builder.WithOrigins("http://bangazon.com:8080")
+                    builder.WithOrigins("http://triplann.com:8080")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         ); 
@@ -33,7 +33,7 @@ namespace thoughtless_eels
             );
 
             services.AddMvc();
-            var connection = $"Filename={System.Environment.GetEnvironmentVariable("EelDB")}";
+            var connection = $"Filename={System.Environment.GetEnvironmentVariable("Triplan")}";
             Console.WriteLine($"{connection}");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connection));
 

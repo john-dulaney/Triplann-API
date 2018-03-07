@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
-namespace thoughtless_eels.Controllers
+namespace Triplann.Controllers
 {
     [EnableCors("AllowSpecificOrigin")]
     [Route("api/[controller]")]

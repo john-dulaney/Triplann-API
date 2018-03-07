@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using thoughtless_eels.Data;
-using thoughtless_eels.Models;
+using Triplann.Data;
+using Triplann.Models;
 
 // grab the correct namespace:
-namespace thoughtless_eels.Controllers
+namespace Triplann.Controllers
 {
     [EnableCors("AllowSpecificOrigin")]
     // tell .net that this is a controller and how to name the url:

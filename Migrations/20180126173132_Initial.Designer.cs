@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
-using thoughtless_eels.Data;
+using Triplann.Data;
 
 namespace thoughtlesseels.Migrations
 {
@@ -20,7 +20,7 @@ namespace thoughtlesseels.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
 
-            modelBuilder.Entity("thoughtless_eels.Models.Computer", b =>
+            modelBuilder.Entity("Triplann.Models.Computer", b =>
                 {
                     b.Property<int>("ComputerId")
                         .ValueGeneratedOnAdd();
@@ -42,7 +42,7 @@ namespace thoughtlesseels.Migrations
                     b.ToTable("Computer");
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.CurrentOrder", b =>
+            modelBuilder.Entity("Triplann.Models.CurrentOrder", b =>
                 {
                     b.Property<int>("CurrentOrderId")
                         .ValueGeneratedOnAdd();
@@ -60,7 +60,7 @@ namespace thoughtlesseels.Migrations
                     b.ToTable("CurrentOrder");
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.Customer", b =>
+            modelBuilder.Entity("Triplann.Models.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd();
@@ -81,7 +81,7 @@ namespace thoughtlesseels.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.Department", b =>
+            modelBuilder.Entity("Triplann.Models.Department", b =>
                 {
                     b.Property<int>("DepartmentId")
                         .ValueGeneratedOnAdd();
@@ -96,7 +96,7 @@ namespace thoughtlesseels.Migrations
                     b.ToTable("Department");
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.Employee", b =>
+            modelBuilder.Entity("Triplann.Models.Employee", b =>
                 {
                     b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd();
@@ -115,7 +115,7 @@ namespace thoughtlesseels.Migrations
                     b.ToTable("Employee");
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.EmployeeComputer", b =>
+            modelBuilder.Entity("Triplann.Models.EmployeeComputer", b =>
                 {
                     b.Property<int>("EmployeeComputerId")
                         .ValueGeneratedOnAdd();
@@ -139,7 +139,7 @@ namespace thoughtlesseels.Migrations
                     b.ToTable("EmployeeComputer");
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.EmployeeTraining", b =>
+            modelBuilder.Entity("Triplann.Models.EmployeeTraining", b =>
                 {
                     b.Property<int>("EmployeeTrainingId")
                         .ValueGeneratedOnAdd();
@@ -157,7 +157,7 @@ namespace thoughtlesseels.Migrations
                     b.ToTable("EmployeeTraining");
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.PaymentType", b =>
+            modelBuilder.Entity("Triplann.Models.PaymentType", b =>
                 {
                     b.Property<int>("PaymentTypeId")
                         .ValueGeneratedOnAdd();
@@ -176,7 +176,7 @@ namespace thoughtlesseels.Migrations
                     b.ToTable("PaymentType");
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.Product", b =>
+            modelBuilder.Entity("Triplann.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd();
@@ -204,7 +204,7 @@ namespace thoughtlesseels.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.ProductOrder", b =>
+            modelBuilder.Entity("Triplann.Models.ProductOrder", b =>
                 {
                     b.Property<int>("ProductOrderId")
                         .ValueGeneratedOnAdd();
@@ -222,7 +222,7 @@ namespace thoughtlesseels.Migrations
                     b.ToTable("ProductOrder");
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.ProductType", b =>
+            modelBuilder.Entity("Triplann.Models.ProductType", b =>
                 {
                     b.Property<int>("ProductTypeId")
                         .ValueGeneratedOnAdd();
@@ -235,7 +235,7 @@ namespace thoughtlesseels.Migrations
                     b.ToTable("ProductType");
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.TrainingProgram", b =>
+            modelBuilder.Entity("Triplann.Models.TrainingProgram", b =>
                 {
                     b.Property<int>("TrainingProgramId")
                         .ValueGeneratedOnAdd();
@@ -255,82 +255,82 @@ namespace thoughtlesseels.Migrations
                     b.ToTable("TrainingProgram");
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.CurrentOrder", b =>
+            modelBuilder.Entity("Triplann.Models.CurrentOrder", b =>
                 {
-                    b.HasOne("thoughtless_eels.Models.Customer", "Customer")
+                    b.HasOne("Triplann.Models.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("thoughtless_eels.Models.PaymentType", "PaymentType")
+                    b.HasOne("Triplann.Models.PaymentType", "PaymentType")
                         .WithMany()
                         .HasForeignKey("PaymentTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.Employee", b =>
+            modelBuilder.Entity("Triplann.Models.Employee", b =>
                 {
-                    b.HasOne("thoughtless_eels.Models.Department", "Department")
+                    b.HasOne("Triplann.Models.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.EmployeeComputer", b =>
+            modelBuilder.Entity("Triplann.Models.EmployeeComputer", b =>
                 {
-                    b.HasOne("thoughtless_eels.Models.Computer", "Computer")
+                    b.HasOne("Triplann.Models.Computer", "Computer")
                         .WithMany()
                         .HasForeignKey("ComputerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("thoughtless_eels.Models.Employee", "Employee")
+                    b.HasOne("Triplann.Models.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.EmployeeTraining", b =>
+            modelBuilder.Entity("Triplann.Models.EmployeeTraining", b =>
                 {
-                    b.HasOne("thoughtless_eels.Models.Employee", "Employee")
+                    b.HasOne("Triplann.Models.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("thoughtless_eels.Models.TrainingProgram", "TrainingProgram")
+                    b.HasOne("Triplann.Models.TrainingProgram", "TrainingProgram")
                         .WithMany()
                         .HasForeignKey("TrainingProgramId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.PaymentType", b =>
+            modelBuilder.Entity("Triplann.Models.PaymentType", b =>
                 {
-                    b.HasOne("thoughtless_eels.Models.Customer", "Customer")
+                    b.HasOne("Triplann.Models.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.Product", b =>
+            modelBuilder.Entity("Triplann.Models.Product", b =>
                 {
-                    b.HasOne("thoughtless_eels.Models.Customer", "Customer")
+                    b.HasOne("Triplann.Models.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("thoughtless_eels.Models.ProductType", "ProductType")
+                    b.HasOne("Triplann.Models.ProductType", "ProductType")
                         .WithMany()
                         .HasForeignKey("ProductTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("thoughtless_eels.Models.ProductOrder", b =>
+            modelBuilder.Entity("Triplann.Models.ProductOrder", b =>
                 {
-                    b.HasOne("thoughtless_eels.Models.CurrentOrder", "CurrentOrder")
+                    b.HasOne("Triplann.Models.CurrentOrder", "CurrentOrder")
                         .WithMany()
                         .HasForeignKey("CurrentOrderId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("thoughtless_eels.Models.Product", "Product")
+                    b.HasOne("Triplann.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);

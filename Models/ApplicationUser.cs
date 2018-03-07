@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace thoughtless_eels.Models
+namespace Triplann.Models
 {
     // Create the Customer Table: 
     // Establish the Primary Key as well it's Properties: 
