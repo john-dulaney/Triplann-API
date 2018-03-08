@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $.ajax({
-            "url": "http://bangazon.com:5000/api/Department/1",
+            "url": "http://Triplann.com:5000/api/",
             "method": "GET",
         }).then(d => (
             console.log(d)
