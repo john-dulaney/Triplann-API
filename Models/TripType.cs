@@ -7,16 +7,10 @@ namespace Triplann.Models {
     public class TripType {
         [Key]
         public int TripTypeId { get; set; }
-
-        // Reference for Climate types: http://www.weather-climate.org.uk/13.php
-
-        [Display (Name = "Weather At Destination")]
-        public string WeatherTypeId { get; set; }
-        public WeatherTypeId WeatherTypeId { get; set; }
-
-        [Display (Name = "Weather At Destination")]
-        public string ActivityTypeId { get; set; }
-        public ActivityTypeId ActivityTypeId { get; set; }
+        public string WeatherType { get; set; }
+        public string TravelMethod { get; set; }
+        public string ActivityType { get; set; }
+        public string UserId { get; set; }
 
     }
 }

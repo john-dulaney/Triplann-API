@@ -9,7 +9,10 @@ namespace Triplann.Models {
         public int TripId { get; set; }
 
         [Required]
-        public string ChecklistAction { get; set; }
+        public string Location { get; set; }
+        
+        [Required]
+        public string Duration { get; set; }
 
         [Required]
         public int TripTypeId { get; set; }

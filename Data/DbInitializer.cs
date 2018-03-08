@@ -12,28 +12,67 @@ namespace Triplann.Data {
         public async static void Initialize (IServiceProvider serviceProvider) {
             using (var context = new ApplicationDbContext (serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>> ())) {
                 var roleStore = new RoleStore<IdentityRole> (context);
-                var userstore = new UserStore<ApplicationUser> (context);
+                // var userstore = new UserStore<ApplicationUser> (context);
 
-                if (!context.Roles.Any (r => r.Name == "Administrator")) {
-                    var role = new IdentityRole { Name = "Administrator", NormalizedName = "Administrator" };
-                    await roleStore.CreateAsync (role);
+                // if (!context.Roles.Any (r => r.Name == "Administrator")) {
+                //     var role = new IdentityRole { Name = "Administrator", NormalizedName = "Administrator" };
+                //     await roleStore.CreateAsync (role);
+                // }
+
+                if (!context.ChecklistItem.Any ()) {
+                    var ChecklistItems = new ChecklistItem[] {
+                        new ChecklistItem {
+                            ChecklistAction = "Lock your house.",
+                        },
+                        new ChecklistItem {
+                            ChecklistAction = "Toothbrush",
+                        },
+                        new ChecklistItem {
+                            ChecklistAction = "Skii Jacket",
+                        },
+                        new ChecklistItem {
+                            ChecklistAction = "Skii Pants",
+                        },
+                        new ChecklistItem {
+                            ChecklistAction = "Sandals",
+                        },
+                        new ChecklistItem {
+                            ChecklistAction = "Swimsuit",
+                        },
+                        new ChecklistItem {
+                            ChecklistAction = "SKii Boots",
+                        },
+                        new ChecklistItem {
+                            ChecklistAction = "Sunscreen",
+                        },
+                        new ChecklistItem {
+                            ChecklistAction = "Hair Dryer",
+                        },
+                        new ChecklistItem {
+                            ChecklistAction = "Fleece Jacket",
+                        },
+                    };
+
+                    foreach (ChecklistItem i in ChecklistItems) {
+                        context.ChecklistItem.Add (i);
+                    }
+                    context.SaveChanges ();
                 }
 
                 if (!context.TripType.Any ()) {
                     var TripTypes = new TripType[] {
                         new TripType {
-                            PolarVeryCold = "",
-                            PolarMildCold = "",
-                            AridVeryHot = "",
-                            AridCold = "",
-                            TropicalModerate = "",
-                            TropicalVeryHot = "",
-                            TemperateVeryHot = "",
-                            TemperateCold = ""
+                        ActivityType = "Skii"
                         },
                         new TripType {
-                            
-                        }
+                        ActivityType = "Relax/Vacation"
+                        },
+                        new TripType {
+                        ActivityType = "Business"
+                        },
+                        new TripType {
+                        ActivityType = "Hike/Climb"
+                        },
                     };
 
                     foreach (TripType i in TripTypes) {
@@ -42,62 +81,36 @@ namespace Triplann.Data {
                     context.SaveChanges ();
                 }
 
-                if (!context.ProductType.Any ()) {
-                    var productTypes = new ProductType[] {
-                        new ProductType {
-                        Label = "Electronics"
+                if (!context.Trip.Any ()) {
+                    var Trips = new Trip[] {
+                        new Trip {
+                        Location = "Alaska",
+                        Duration = "1 Week",
+                        TripType = context.TripType.Single (t => t.ActivityType == "Skii"),
+                        User = context.ApplicationUser.Single (u => u.FirstName == "Chaz")
                         },
-                        new ProductType {
-                        Label = "Appliances"
+                        new Trip {
+                        Location = "Belize",
+                        Duration = "2 Week",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
+                        User = context.ApplicationUser.Single (u => u.FirstName == "Marko")
                         },
-                        new ProductType {
-                        Label = "Sporting Goods"
+                        new Trip {
+                        Location = "Denmark",
+                        Duration = "3 Week",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        User = context.ApplicationUser.Single (u => u.FirstName == "Steve")
                         },
-                        new ProductType {
-                        Label = "Housewares"
-                        },
-                    };
-
-                    foreach (ProductType i in productTypes) {
-                        context.ProductType.Add (i);
-                    }
-                    context.SaveChanges ();
-                }
-
-                if (!context.Product.Any ()) {
-                    var products = new Product[] {
-                        new Product {
-                        Title = "Kite",
-                        Description = "It flies high",
-                        Price = 9.99,
-                        ProductType = context.ProductType.Single (t => t.Label == "Sporting Goods"),
-                        User = context.ApplicationUser.Single (u => u.Email == "admin@admin.com")
-                        },
-                        new Product {
-                        Title = "Curtains",
-                        Description = "They make it dark",
-                        Price = 140.00,
-                        ProductTypeId = context.ProductType.Single (t => t.Label == "Housewares").ProductTypeId,
-                        User = context.ApplicationUser.Single (u => u.Email == "admin@admin.com")
-                        },
-                        new Product {
-                        Title = "Macbook Pro",
-                        Description = "It's powerful",
-                        Price = 1278.00,
-                        ProductTypeId = context.ProductType.Single (t => t.Label == "Electronics").ProductTypeId,
-                        User = context.ApplicationUser.Single (u => u.Email == "admin@admin.com")
-                        },
-                        new Product {
-                        Title = "Refrigerator",
-                        Description = "It keep things cool",
-                        Price = 1149.00,
-                        ProductTypeId = context.ProductType.Single (t => t.Label == "Appliances").ProductTypeId,
-                        User = context.ApplicationUser.Single (u => u.Email == "admin@admin.com")
+                        new Trip {
+                        Location = "Nashville",
+                        Duration = "4 Week",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        User = context.ApplicationUser.Single (u => u.FirstName == "John")
                         },
                     };
 
-                    foreach (Product i in products) {
-                        context.Product.Add (i);
+                    foreach (Trip i in Trips) {
+                        context.Trip.Add (i);
                     }
 
                     context.SaveChanges ();

@@ -13,7 +13,7 @@ namespace Triplann.Models {
 
 
 
+
         
-    }
-   
-}
+    }  
+};

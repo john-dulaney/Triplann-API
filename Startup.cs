@@ -33,7 +33,8 @@ namespace Triplann
             );
 
             services.AddMvc();
-            var connection = $"Filename={System.Environment.GetEnvironmentVariable("Triplan")}";
+            // var connection = $"Data Source={System.Environment.GetEnvironmentVariable("Triplan")}";
+            var connection = "Data Source=./bin/Triplann.db";
             Console.WriteLine($"{connection}");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connection));
 
