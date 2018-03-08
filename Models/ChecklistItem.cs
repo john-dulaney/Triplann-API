@@ -18,10 +18,10 @@ namespace Triplann.Models
         public string ProductName { get; set; }
 
 
-        // First Foreign Key:
-        [Required]
-        public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        // // First Foreign Key:
+        // [Required]
+        // public int CustomerId { get; set; }
+        // public Customer Customer { get; set; }
 
     }
 }
