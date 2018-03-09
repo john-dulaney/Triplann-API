@@ -3,7 +3,6 @@ using Triplann.Models;
 
 namespace Triplann.Data
 {
-    //Naming conventions for this kind of file?
     public class ApplicationDbContext: DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

@@ -55,7 +55,7 @@ namespace Triplann.Migrations
                         column: x => x.TripTypeId,
                         principalTable: "TripType",
                         principalColumn: "TripTypeId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,13 +77,13 @@ namespace Triplann.Migrations
                         column: x => x.ApplicationUserId,
                         principalTable: "ApplicationUser",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Trip_TripType_TripTypeId",
                         column: x => x.TripTypeId,
                         principalTable: "TripType",
                         principalColumn: "TripTypeId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
