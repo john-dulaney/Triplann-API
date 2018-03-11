@@ -11,36 +11,22 @@ namespace Triplann.Data {
     public static class DbInitializer {
         public async static void Initialize (IServiceProvider serviceProvider) {
             using (var context = new ApplicationDbContext (serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>> ())) {
-                var roleStore = new RoleStore<IdentityRole> (context);
+                var userstore = new UserStore<ApplicationUser> (context);
+                ApplicationUser user ;
 
-                // ****
-                // Ask about this Tomorrow
-                // var userstore = new UserStore<ApplicationUser> (context);
-                // **** 
-
-                if (!context.ApplicationUser.Any ()) {
-                    var ApplicationUsers = new ApplicationUser[] {
+                if (userstore.FindByNameAsync ("Chaz")== null) {
+                     user = 
                         new ApplicationUser {
-                        UserId = 1,
                         FirstName = "Chaz",
                         LastName = "Vanderbilt",
-                        },
-                        new ApplicationUser {
-                        UserId = 2,
-                        FirstName = "Peyton",
-                        LastName = "FuckingManning",
-                        },
-                        new ApplicationUser {
-                        UserId = 3,
-                        FirstName = "Chazzette",
-                        LastName = "Belmont",
-                        }
-                    };
-                    foreach (ApplicationUser u in ApplicationUsers) {
-                        context.ApplicationUser.Add (u);
-                    }
-                    context.SaveChanges ();
+                        };
+                        
+                    var passwordHash = new PasswordHasher<ApplicationUser> ();
+                    user.PasswordHash = passwordHash.HashPassword (user, "Abc123!");
+                    await userstore.CreateAsync (user);
+
                 }
+                context.SaveChanges ();
 
                 if (!context.ChecklistItem.Any ()) {
                     var ChecklistItems = new ChecklistItem[] {
@@ -110,7 +96,7 @@ namespace Triplann.Data {
                         Location = "Alaska",
                         Duration = "1 Week",
                         TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
-                        User = context.ApplicationUser.Single (u => u.FirstName == "Chaz")
+                        User = context.user.Single (u => u.FirstName == "Chaz")
                         },
                         new Trip {
                         Location = "Belize",
@@ -138,8 +124,39 @@ namespace Triplann.Data {
 
                     context.SaveChanges ();
                 }
-
             }
         }
+
+        // This method will seed users into the database
+        // TODO: further refactoring as this sometimes throws an error
+        public static async void AddUsers (IServiceProvider services, UserManager<ApplicationUser> userManager, string UserName) {
+            using (var context = services.GetRequiredService<ApplicationDbContext> ()) {
+                var user = await userManager.FindByNameAsync (UserName);
+
+                if (user == null) {
+                    user = new ApplicationUser { UserName = UserName };
+                    user.FirstName = UserName;
+                    user.LastName = UserName;
+                    await userManager.CreateAsync (user, "P@ss1234");
+                }
+            }
+        }
+
+        // ApplicationUser Chaz = new ApplicationUser();
+        // ApplicationUser Peyton = new ApplicationUser();
+        // ApplicationUser Chazzette = new ApplicationUser();
+
+        // try
+        // {
+        //     // capture the users
+        //     Chaz = userManager.FindByNameAsync("Chaz@Chaz.COM").Result;
+        //     Peyton = userManager.FindByNameAsync("Peyton@Peyton.COM").Result;
+        //     Chazzette = userManager.FindByNameAsync("Chazzette@Chazzette.COM").Result;
+        // }
+        // catch (Exception ex) {
+        //     var logger = services.GetRequiredService<ILogger<Program>>();
+        //     logger.LogError(ex, "Required users: Chaz, Peyton, and Chazzette were not present. Create them and retry.");
+        //     return;
+        // }
     }
 }
