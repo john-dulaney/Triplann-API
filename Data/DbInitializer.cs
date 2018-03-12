@@ -12,61 +12,21 @@ namespace Triplann.Data {
         public async static void Initialize (IServiceProvider serviceProvider) {
             using (var context = new ApplicationDbContext (serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>> ())) {
                 var userstore = new UserStore<ApplicationUser> (context);
-                ApplicationUser user ;
+                ApplicationUser user;
 
-                if (userstore.FindByNameAsync ("Chaz")== null) {
-                     user = 
-                        new ApplicationUser {
-                        FirstName = "Chaz",
-                        LastName = "Vanderbilt",
+                if (userstore.FindByNameAsync ("Chaz") == null) {
+                    user =
+                    new ApplicationUser {
+                    FirstName = "Chaz",
+                    LastName = "Vanderbilt",
                         };
-                        
+
                     var passwordHash = new PasswordHasher<ApplicationUser> ();
                     user.PasswordHash = passwordHash.HashPassword (user, "Abc123!");
                     await userstore.CreateAsync (user);
 
                 }
                 context.SaveChanges ();
-
-                if (!context.ChecklistItem.Any ()) {
-                    var ChecklistItems = new ChecklistItem[] {
-                        new ChecklistItem {
-                        ChecklistAction = "Lock your house.",
-                        },
-                        new ChecklistItem {
-                        ChecklistAction = "Toothbrush",
-                        },
-                        new ChecklistItem {
-                        ChecklistAction = "Skii Jacket",
-                        },
-                        new ChecklistItem {
-                        ChecklistAction = "Skii Pants",
-                        },
-                        new ChecklistItem {
-                        ChecklistAction = "Sandals",
-                        },
-                        new ChecklistItem {
-                        ChecklistAction = "Swimsuit",
-                        },
-                        new ChecklistItem {
-                        ChecklistAction = "SKii Boots",
-                        },
-                        new ChecklistItem {
-                        ChecklistAction = "Sunscreen",
-                        },
-                        new ChecklistItem {
-                        ChecklistAction = "Hair Dryer",
-                        },
-                        new ChecklistItem {
-                        ChecklistAction = "Fleece Jacket",
-                        },
-                    };
-
-                    foreach (ChecklistItem c in ChecklistItems) {
-                        context.ChecklistItem.Add (c);
-                    }
-                    context.SaveChanges ();
-                }
 
                 if (!context.TripType.Any ()) {
                     var TripTypes = new TripType[] {
@@ -90,59 +50,109 @@ namespace Triplann.Data {
                     context.SaveChanges ();
                 }
 
-                // if (!context.Trip.Any ()) {
-                //     var Trips = new Trip[] {
-                //         new Trip {
-                //         Location = "Alaska",
-                //         Duration = "1 Week",
-                //         TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
-                //         User = context.ApplicationUser.Single (u => u.FirstName == "Chaz")
-                //         },
-                //         new Trip {
-                //         Location = "Belize",
-                //         Duration = "2 Week",
-                //         TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
-                //         User = context.ApplicationUser.Single (u => u.FirstName == "Marko")
-                //         },
-                //         new Trip {
-                //         Location = "Denmark",
-                //         Duration = "3 Week",
-                //         TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
-                //         User = context.ApplicationUser.Single (u => u.FirstName == "Steve")
-                //         },
-                //         new Trip {
-                //         Location = "Nashville",
-                //         Duration = "4 Week",
-                //         TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
-                //         User = context.ApplicationUser.Single (u => u.FirstName == "John")
-                //         },
-                //     };
+                if (!context.ChecklistItem.Any ()) {
+                    var ChecklistItems = new ChecklistItem[] {
+                        new ChecklistItem {
+                        ChecklistAction = "Lock your house.",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Toothbrush",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Skii Jacket",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Skii Pants",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Sandals",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Swimsuit",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "SKii Boots",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Sunscreen",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Hair Dryer",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Fleece Jacket",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                    };
 
-                //     foreach (Trip t in Trips) {
-                //         context.Trip.Add (t);
-                //     }
+                    foreach (ChecklistItem c in ChecklistItems) {
+                        context.ChecklistItem.Add (c);
+                    }
+                    context.SaveChanges ();
+                }
+
+                if (!context.Trip.Any ()) {
+                    var Trips = new Trip[] {
+                        new Trip {
+                        Location = "Alaska",
+                        Duration = "1 Week",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        // User = context.ApplicationUser.Single (u => u.FirstName == "Chaz")
+                        },
+                        new Trip {
+                        Location = "Belize",
+                        Duration = "2 Week",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
+                        // User = context.ApplicationUser.Single (u => u.FirstName == "Marko")
+                        },
+                        new Trip {
+                        Location = "Denmark",
+                        Duration = "3 Week",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        // User = context.ApplicationUser.Single (u => u.FirstName == "Steve")
+                        },
+                        new Trip {
+                        Location = "Nashville",
+                        Duration = "4 Week",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        // User = context.ApplicationUser.Single (u => u.FirstName == "John")
+                        },
+                    };
+
+                    foreach (Trip t in Trips) {
+                        context.Trip.Add (t);
+                    }
 
                     context.SaveChanges ();
                 }
             }
         }
+    }
+};
 
+// something
+// ApplicationUser Chaz = new ApplicationUser();
+// ApplicationUser Peyton = new ApplicationUser();
+// ApplicationUser Chazzette = new ApplicationUser();
 
-
-        // ApplicationUser Chaz = new ApplicationUser();
-        // ApplicationUser Peyton = new ApplicationUser();
-        // ApplicationUser Chazzette = new ApplicationUser();
-
-        // try
-        // {
-        //     // capture the users
-        //     Chaz = userManager.FindByNameAsync("Chaz@Chaz.COM").Result;
-        //     Peyton = userManager.FindByNameAsync("Peyton@Peyton.COM").Result;
-        //     Chazzette = userManager.FindByNameAsync("Chazzette@Chazzette.COM").Result;
-        // }
-        // catch (Exception ex) {
-        //     var logger = services.GetRequiredService<ILogger<Program>>();
-        //     logger.LogError(ex, "Required users: Chaz, Peyton, and Chazzette were not present. Create them and retry.");
-        //     return;
-        // }
-    };
+// try
+// {
+//     // capture the users
+//     Chaz = userManager.FindByNameAsync("Chaz@Chaz.COM").Result;
+//     Peyton = userManager.FindByNameAsync("Peyton@Peyton.COM").Result;
+//     Chazzette = userManager.FindByNameAsync("Chazzette@Chazzette.COM").Result;
+// }
+// catch (Exception ex) {
+//     var logger = services.GetRequiredService<ILogger<Program>>();
+//     logger.LogError(ex, "Required users: Chaz, Peyton, and Chazzette were not present. Create them and retry.");
+//     return;
+// }

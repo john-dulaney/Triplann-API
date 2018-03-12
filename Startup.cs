@@ -8,49 +8,43 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Triplann.Data;
 
-namespace Triplann
-{
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
+namespace Triplann {
+    public class Startup {
+        public Startup (IConfiguration configuration) {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowSpecificOrigin", builder =>
-                    builder.WithOrigins("http://triplann.com:8080")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        ); 
-            }
-            );
+        public void ConfigureServices (IServiceCollection services) {
+            services.AddCors (options => {
+                options.AddPolicy ("AllowSpecificOrigin", builder =>
+                    builder.WithOrigins ("http://localhost:5000")
+                    .AllowAnyHeader ()
+                    .AllowAnyMethod ()
+                    .AllowAnyOrigin ()
+                    .AllowCredentials ()
+                );
+            });
 
-            services.AddMvc();
+            services.AddMvc ();
             // var connection = $"Data Source={System.Environment.GetEnvironmentVariable("Triplan")}";
             var connection = "Data Source=./bin/Triplann.db";
-            Console.WriteLine($"{connection}");
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connection));
+            Console.WriteLine ($"{connection}");
+            services.AddDbContext<ApplicationDbContext> (options => options.UseSqlite (connection));
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
+        public void Configure (IApplicationBuilder app, IHostingEnvironment env) {
+            if (env.IsDevelopment ()) {
+                app.UseDeveloperExceptionPage ();
             }
-            app.UseCors(
-              "AllowSpecificOrigin"  
+            app.UseCors (
+                "AllowSpecificOrigin"
             );
-            app.UseMvc();
+            app.UseMvc ();
         }
     }
 }

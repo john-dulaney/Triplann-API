@@ -204,8 +204,6 @@ namespace Triplann.Migrations
                     b.Property<int>("TripId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ApplicationUserId");
-
                     b.Property<string>("Duration")
                         .IsRequired();
 

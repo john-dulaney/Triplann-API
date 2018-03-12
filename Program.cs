@@ -18,7 +18,7 @@ namespace Triplann {
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<ApplicationDbContext> ();
                 try {
-                    // Data.DbInitializer.Initialize (services);
+                    Data.DbInitializer.Initialize (services);
                 } catch (Exception ex) {
                     var logger = services.GetRequiredService<ILogger<Program>> ();
                     logger.LogError (ex, "An error occurred seeding the DB.");

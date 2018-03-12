@@ -18,8 +18,8 @@ namespace Triplann.Models {
         public int TripTypeId { get; set; }
         public TripType TripType { get; set; }
 
-        [Required]
-        public int ApplicationUserId { get; set; }
+        // [Required]
+        // public int ApplicationUserId { get; set; }
         public ApplicationUser User { get; set; }
 
     }

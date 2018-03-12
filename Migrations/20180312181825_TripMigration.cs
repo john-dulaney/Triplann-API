@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Triplann.Migrations
 {
-    public partial class triplannMig : Migration
+    public partial class TripMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -197,7 +197,6 @@ namespace Triplann.Migrations
                 {
                     TripId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ApplicationUserId = table.Column<int>(nullable: false),
                     Duration = table.Column<string>(nullable: false),
                     Location = table.Column<string>(nullable: false),
                     TripTypeId = table.Column<int>(nullable: false),

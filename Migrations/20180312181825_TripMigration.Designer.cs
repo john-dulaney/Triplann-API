@@ -11,8 +11,8 @@ using Triplann.Data;
 namespace Triplann.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180312164626_triplannMig")]
-    partial class triplannMig
+    [Migration("20180312181825_TripMigration")]
+    partial class TripMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -204,8 +204,6 @@ namespace Triplann.Migrations
                 {
                     b.Property<int>("TripId")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ApplicationUserId");
 
                     b.Property<string>("Duration")
                         .IsRequired();
