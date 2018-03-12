@@ -1,4 +1,5 @@
 ## Triplann API
+## Author: John Dulaney
 ---
 ### :construction: This Repo is under construction  :construction:
 ---
