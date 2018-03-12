@@ -16,7 +16,7 @@
 //         // create a function that returns the customer data
 //         // corresponding to the id passed in
 //         private bool CustomerExists (int customerId) {
-//             return _context.Customer.Any (g => g.CustomerId == customerId);
+//             return _context.User.Any (g => g.CustomerId == customerId);
 //         }
 //         // capture an instance of application db context
 //         private ApplicationDbContext _context;
@@ -28,7 +28,7 @@
 //         // POST api/values
 //         [HttpPost]
 //         // pass in a customer 
-//         public IActionResult Post ([FromBody] Customer customer) {
+//         public IActionResult Post ([FromBody] User customer) {
 //             // check that the input matches the strucure of our model
 //             if (!ModelState.IsValid) {
 //                 // throw an error if not
@@ -36,7 +36,7 @@
 //             }
 
 //             // add customer to the db
-//             _context.Customer.Add (customer);
+//             _context.User.Add (customer);
 
 //             // attempt to save the changes and throw an error if any 
 //             // errors occur
@@ -55,7 +55,7 @@
 
 //         [HttpGet ("getCustomers")]
 //         public IActionResult Get () {
-//             var customers = _context.Customer.ToList ();
+//             var customers = _context.User.ToList ();
 //             if (customers == null) {
 //                 return NotFound ();
 //             }
@@ -70,7 +70,7 @@
 //             }
 
 //             try {
-//                 Customer customer = _context.Customer.Single (g => g.CustomerId == id);
+//                 User customer = _context.User.Single (g => g.CustomerId == id);
 
 //                 if (customer == null) {
 //                     return NotFound ();
@@ -83,7 +83,7 @@
 //         }
 
 //         [HttpPut ("{id}")]
-//         public IActionResult Put (int id, [FromBody] Customer customer) {
+//         public IActionResult Put (int id, [FromBody] User customer) {
 //             if (!ModelState.IsValid) {
 //                 return BadRequest (ModelState);
 //             }
@@ -91,7 +91,7 @@
 //             if (id != customer.CustomerId) {
 //                 return BadRequest ();
 //             }
-//             _context.Customer.Update (customer);
+//             _context.User.Update (customer);
 //             try {
 //                 _context.SaveChanges ();
 //             } catch (DbUpdateConcurrencyException) {
@@ -110,7 +110,7 @@
 //         public IActionResult Get (bool? ActiveOrder) {
 
 //           if (ActiveOrder == false) {
-//                 var customer = _context.Customer.Where (c =>
+//                 var customer = _context.User.Where (c =>
 //                     !_context.CurrentOrder.Any (o => o.CustomerId == c.CustomerId));
 
 //                 return Ok (customer);

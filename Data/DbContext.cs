@@ -12,6 +12,7 @@ namespace Triplann.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
         }
 
         // public DbSet<ApplicationUser> ApplicationUser { get; set; }

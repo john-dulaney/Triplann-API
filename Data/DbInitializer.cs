@@ -90,57 +90,44 @@ namespace Triplann.Data {
                     context.SaveChanges ();
                 }
 
-                if (!context.Trip.Any ()) {
-                    var Trips = new Trip[] {
-                        new Trip {
-                        Location = "Alaska",
-                        Duration = "1 Week",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
-                        User = context.user.Single (u => u.FirstName == "Chaz")
-                        },
-                        new Trip {
-                        Location = "Belize",
-                        Duration = "2 Week",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
-                        User = context.ApplicationUser.Single (u => u.FirstName == "Marko")
-                        },
-                        new Trip {
-                        Location = "Denmark",
-                        Duration = "3 Week",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
-                        User = context.ApplicationUser.Single (u => u.FirstName == "Steve")
-                        },
-                        new Trip {
-                        Location = "Nashville",
-                        Duration = "4 Week",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
-                        User = context.ApplicationUser.Single (u => u.FirstName == "John")
-                        },
-                    };
+                // if (!context.Trip.Any ()) {
+                //     var Trips = new Trip[] {
+                //         new Trip {
+                //         Location = "Alaska",
+                //         Duration = "1 Week",
+                //         TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                //         User = context.ApplicationUser.Single (u => u.FirstName == "Chaz")
+                //         },
+                //         new Trip {
+                //         Location = "Belize",
+                //         Duration = "2 Week",
+                //         TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
+                //         User = context.ApplicationUser.Single (u => u.FirstName == "Marko")
+                //         },
+                //         new Trip {
+                //         Location = "Denmark",
+                //         Duration = "3 Week",
+                //         TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                //         User = context.ApplicationUser.Single (u => u.FirstName == "Steve")
+                //         },
+                //         new Trip {
+                //         Location = "Nashville",
+                //         Duration = "4 Week",
+                //         TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                //         User = context.ApplicationUser.Single (u => u.FirstName == "John")
+                //         },
+                //     };
 
-                    foreach (Trip t in Trips) {
-                        context.Trip.Add (t);
-                    }
+                //     foreach (Trip t in Trips) {
+                //         context.Trip.Add (t);
+                //     }
 
                     context.SaveChanges ();
                 }
             }
         }
 
-        // This method will seed users into the database
-        // TODO: further refactoring as this sometimes throws an error
-        public static async void AddUsers (IServiceProvider services, UserManager<ApplicationUser> userManager, string UserName) {
-            using (var context = services.GetRequiredService<ApplicationDbContext> ()) {
-                var user = await userManager.FindByNameAsync (UserName);
 
-                if (user == null) {
-                    user = new ApplicationUser { UserName = UserName };
-                    user.FirstName = UserName;
-                    user.LastName = UserName;
-                    await userManager.CreateAsync (user, "P@ss1234");
-                }
-            }
-        }
 
         // ApplicationUser Chaz = new ApplicationUser();
         // ApplicationUser Peyton = new ApplicationUser();
@@ -158,5 +145,4 @@ namespace Triplann.Data {
         //     logger.LogError(ex, "Required users: Chaz, Peyton, and Chazzette were not present. Create them and retry.");
         //     return;
         // }
-    }
-}
+    };
