@@ -31,22 +31,68 @@ namespace Triplann.Data {
                 if (!context.TripType.Any ()) {
                     var TripTypes = new TripType[] {
                         new TripType {
-                        ActivityType = "Skii"
+                        WeatherType = "Snow",
+                        TravelMethod= "Car",
+                        ActivityType = "Skii",
+                        UserId = "1"
                         },
                         new TripType {
-                        ActivityType = "Relax/Vacation"
+                        WeatherType = "Tropical",
+                        TravelMethod= "Plane",
+                        ActivityType = "Relax/Vacation",
+                        UserId = "2"
                         },
                         new TripType {
-                        ActivityType = "Business"
+                        WeatherType = "Temperate",
+                        TravelMethod= "Car",
+                        ActivityType = "Business",
+                        UserId = "1"
                         },
                         new TripType {
-                        ActivityType = "Hike/Climb"
+                        WeatherType = "Temperate",
+                        TravelMethod= "Car",
+                        ActivityType = "Hike/Climb",
+                        UserId = "3"
                         }
                     };
 
                     foreach (TripType tt in TripTypes) {
                         context.TripType.Add (tt);
                     }
+                    context.SaveChanges ();
+                }
+                 if (!context.Trip.Any ()) {
+                    var Trips = new Trip[] {
+                        new Trip {
+                        Location = "Alaska",
+                        Duration = "1 Week",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        // User = context.ApplicationUser.Single (u => u.FirstName == "Chaz")
+                        },
+                        new Trip {
+                        Location = "Belize",
+                        Duration = "2 Week",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
+                        // User = context.ApplicationUser.Single (u => u.FirstName == "Marko")
+                        },
+                        new Trip {
+                        Location = "Denmark",
+                        Duration = "3 Week",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        // User = context.ApplicationUser.Single (u => u.FirstName == "Steve")
+                        },
+                        new Trip {
+                        Location = "Nashville",
+                        Duration = "4 Week",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        // User = context.ApplicationUser.Single (u => u.FirstName == "John")
+                        },
+                    };
+
+                    foreach (Trip t in Trips) {
+                        context.Trip.Add (t);
+                    }
+
                     context.SaveChanges ();
                 }
 
@@ -90,7 +136,7 @@ namespace Triplann.Data {
                         },
                         new ChecklistItem {
                         ChecklistAction = "Fleece Jacket",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii" || t.ActivityType == "Hike/Climb").TripTypeId,
                         },
                     };
 
@@ -100,40 +146,7 @@ namespace Triplann.Data {
                     context.SaveChanges ();
                 }
 
-                if (!context.Trip.Any ()) {
-                    var Trips = new Trip[] {
-                        new Trip {
-                        Location = "Alaska",
-                        Duration = "1 Week",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
-                        // User = context.ApplicationUser.Single (u => u.FirstName == "Chaz")
-                        },
-                        new Trip {
-                        Location = "Belize",
-                        Duration = "2 Week",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
-                        // User = context.ApplicationUser.Single (u => u.FirstName == "Marko")
-                        },
-                        new Trip {
-                        Location = "Denmark",
-                        Duration = "3 Week",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
-                        // User = context.ApplicationUser.Single (u => u.FirstName == "Steve")
-                        },
-                        new Trip {
-                        Location = "Nashville",
-                        Duration = "4 Week",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
-                        // User = context.ApplicationUser.Single (u => u.FirstName == "John")
-                        },
-                    };
-
-                    foreach (Trip t in Trips) {
-                        context.Trip.Add (t);
-                    }
-
-                    context.SaveChanges ();
-                }
+               
             }
         }
     }
