@@ -13,11 +13,11 @@ namespace Triplann.Controllers
     // tell .net that this is a controller and how to name the url:
     [Route("api/[controller]")]
     // Define the class
-    public class TripTypeController : Controller
+    public class TripController : Controller
     {
         private ApplicationDbContext _context;
         // Constructor method to create an instance of context to communicate with our database.
-        public TripTypeController(ApplicationDbContext ctx)
+        public TripController(ApplicationDbContext ctx)
         {
             _context = ctx;
         }
@@ -26,19 +26,19 @@ namespace Triplann.Controllers
         public IActionResult Get()
         // GET 
         {
-            // set specific DB entry to TripType
-            var TripType = _context.TripType.ToList();
+            // set specific DB entry to Trip
+            var Trip = _context.Trip.ToList();
             // check if null, return 404 if true
-            if (TripType == null)
+            if (Trip == null)
             {
                 return NotFound();
             }
-            return Ok(TripType);
+            return Ok(Trip);
         }
 
 
         // GET Request:
-        [HttpGet("{id}", Name = "GetSingleTripType")]
+        [HttpGet("{id}", Name = "GetSinglePayment")]
         public IActionResult Get(int id)
         {
             // Check if the data matches the Model
@@ -50,15 +50,15 @@ namespace Triplann.Controllers
             // Check DB to ensure referenced tables exist
             try
             {
-                TripType TripType = _context.TripType.Single(c => c.TripTypeId == id);
+                Trip Trip = _context.Trip.Single(c => c.TripId == id);
 
-                if (TripType == null)
+                if (Trip == null)
                 {
                     // Return 404 if null
                     return NotFound();
                 }
 
-                return Ok(TripType);
+                return Ok(Trip);
                 // Catch statement return 404 for some reason
             }
             catch (System.InvalidOperationException)
@@ -68,15 +68,15 @@ namespace Triplann.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]TripType TripType)
+        public IActionResult Post([FromBody]Trip Trip)
         {
             // check to see if data matches the Model
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            // add TripType to the table
-            _context.TripType.Add(TripType);
+            // add Trip to the table
+            _context.Trip.Add(Trip);
             // Save the changes
 
             try
@@ -86,7 +86,7 @@ namespace Triplann.Controllers
             }
             catch (DbUpdateException)
             {
-                if (TripTypeExists(TripType.TripTypeId))
+                if (TripTypeExists(Trip.TripId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -95,12 +95,12 @@ namespace Triplann.Controllers
                     throw;
                 }
             }
-            // Return created TripType method:
-            return CreatedAtRoute("GetSingleTripType", new { id = TripType.TripTypeId }, TripType);
+            // Return created Trip method:
+            return CreatedAtRoute("GetSingleTrip", new { id = Trip.TripId }, Trip);
         }
         // PUT Request:
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]TripType TripType)
+        public IActionResult Put(int id, [FromBody]Trip Trip)
         {
             // Check to see if the data matches the model
             if (!ModelState.IsValid)
@@ -108,13 +108,13 @@ namespace Triplann.Controllers
                 return BadRequest(ModelState);
             }
             // Check for id match, if true, update the table
-            if (id != TripType.TripTypeId)
+            if (id != Trip.TripId)
             {
                 // return 404
                 return BadRequest();
             }
             // update table method
-            _context.TripType.Update(TripType);
+            _context.Trip.Update(Trip);
             try
             {
                 // save changes
@@ -141,23 +141,23 @@ namespace Triplann.Controllers
         public IActionResult Delete(int id)
         {
             // locating the specific instance: 
-            TripType TripType = _context.TripType.Single(c => c.TripTypeId == id);
+            Trip Trip = _context.Trip.Single(c => c.TripId == id);
 
-            if (TripType == null)
+            if (Trip == null)
             {
                 return NotFound();
             }
             // removing the instance from the Datbase:
-            _context.TripType.Remove(TripType);
+            _context.Trip.Remove(Trip);
             // Save the Changes:
             _context.SaveChanges();
-            return Ok(TripType);
+            return Ok(Trip);
         }
 
         // Simple Boolean check to see if the Department even exists:
-        private bool TripTypeExists(int TripTypeId)
+        private bool TripTypeExists(int TripId)
         {
-            return _context.TripType.Any(c => c.TripTypeId == TripTypeId);
+            return _context.Trip.Any(c => c.TripId == TripId);
         }
     }
 }

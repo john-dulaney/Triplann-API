@@ -16,7 +16,7 @@
 //         // create a function that returns the customer data
 //         // corresponding to the id passed in
 //         private bool CustomerExists (int customerId) {
-//             return _context.User.Any (g => g.CustomerId == customerId);
+//             return _context.ApplicationUser.Any (g => g.CustomerId == customerId);
 //         }
 //         // capture an instance of application db context
 //         private ApplicationDbContext _context;
