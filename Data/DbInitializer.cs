@@ -136,7 +136,7 @@ namespace Triplann.Data {
                         },
                         new ChecklistItem {
                         ChecklistAction = "Fleece Jacket",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii" || t.ActivityType == "Hike/Climb").TripTypeId,
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
                         },
                     };
 
@@ -151,21 +151,3 @@ namespace Triplann.Data {
         }
     }
 };
-
-// something
-// ApplicationUser Chaz = new ApplicationUser();
-// ApplicationUser Peyton = new ApplicationUser();
-// ApplicationUser Chazzette = new ApplicationUser();
-
-// try
-// {
-//     // capture the users
-//     Chaz = userManager.FindByNameAsync("Chaz@Chaz.COM").Result;
-//     Peyton = userManager.FindByNameAsync("Peyton@Peyton.COM").Result;
-//     Chazzette = userManager.FindByNameAsync("Chazzette@Chazzette.COM").Result;
-// }
-// catch (Exception ex) {
-//     var logger = services.GetRequiredService<ILogger<Program>>();
-//     logger.LogError(ex, "Required users: Chaz, Peyton, and Chazzette were not present. Create them and retry.");
-//     return;
-// }
