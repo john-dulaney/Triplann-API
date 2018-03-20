@@ -74,8 +74,8 @@ namespace BagoLootAPI
 
                     // ApplicationUser does not exist, create one
                     user = new ApplicationUser {
-                        FirstName = "Generic",
-                        LastName = "ApplicationUser",
+                        FirstName = "Chaz",
+                        LastName = "Vanderbilt",
                         UserName = username,
                         NormalizedUserName = username.ToUpper(),
                         Email = username,
