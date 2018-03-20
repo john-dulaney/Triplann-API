@@ -15,7 +15,7 @@ namespace Triplann.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        // public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<TripType> TripType { get; set; }
         public DbSet<Trip> Trip { get; set; }
         public DbSet<ChecklistItem> ChecklistItem { get; set; }

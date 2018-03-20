@@ -11,8 +11,8 @@ using Triplann.Data;
 namespace Triplann.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180312181825_TripMigration")]
-    partial class TripMigration
+    [Migration("20180315160312_tripmig")]
+    partial class tripmig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -139,6 +139,9 @@ namespace Triplann.Migrations
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired();
 
                     b.Property<bool>("EmailConfirmed");
 

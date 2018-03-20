@@ -67,25 +67,25 @@ namespace Triplann.Data {
                         Location = "Alaska",
                         Duration = "1 Week",
                         TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
-                        // User = context.ApplicationUser.Single (u => u.FirstName == "Chaz")
+                        User = context.ApplicationUser.Single (u => u.FirstName == "Chaz")
                         },
                         new Trip {
                         Location = "Belize",
                         Duration = "2 Week",
                         TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
-                        // User = context.ApplicationUser.Single (u => u.FirstName == "Marko")
+                        User = context.ApplicationUser.Single (u => u.FirstName == "Marko")
                         },
                         new Trip {
                         Location = "Denmark",
                         Duration = "3 Week",
                         TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
-                        // User = context.ApplicationUser.Single (u => u.FirstName == "Steve")
+                        User = context.ApplicationUser.Single (u => u.FirstName == "Steve")
                         },
                         new Trip {
                         Location = "Nashville",
                         Duration = "4 Week",
                         TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
-                        // User = context.ApplicationUser.Single (u => u.FirstName == "John")
+                        User = context.ApplicationUser.Single (u => u.FirstName == "John")
                         },
                     };
 
@@ -136,7 +136,7 @@ namespace Triplann.Data {
                         },
                         new ChecklistItem {
                         ChecklistAction = "Fleece Jacket",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii" || t.ActivityType == "Hike/Climb").TripTypeId,
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
                         },
                     };
 
@@ -151,21 +151,3 @@ namespace Triplann.Data {
         }
     }
 };
-
-// something
-// ApplicationUser Chaz = new ApplicationUser();
-// ApplicationUser Peyton = new ApplicationUser();
-// ApplicationUser Chazzette = new ApplicationUser();
-
-// try
-// {
-//     // capture the users
-//     Chaz = userManager.FindByNameAsync("Chaz@Chaz.COM").Result;
-//     Peyton = userManager.FindByNameAsync("Peyton@Peyton.COM").Result;
-//     Chazzette = userManager.FindByNameAsync("Chazzette@Chazzette.COM").Result;
-// }
-// catch (Exception ex) {
-//     var logger = services.GetRequiredService<ILogger<Program>>();
-//     logger.LogError(ex, "Required users: Chaz, Peyton, and Chazzette were not present. Create them and retry.");
-//     return;
-// }

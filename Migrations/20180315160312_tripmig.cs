@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Triplann.Migrations
 {
-    public partial class TripMigration : Migration
+    public partial class tripmig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,6 +30,7 @@ namespace Triplann.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailAddress = table.Column<string>(nullable: false),
                     EmailConfirmed = table.Column<bool>(nullable: false),
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
