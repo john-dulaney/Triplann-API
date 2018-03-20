@@ -7,9 +7,6 @@ using Microsoft.AspNetCore.Identity;
 namespace Triplann.Models {
     public class ApplicationUser : IdentityUser {
         
-        [Required]
-        [EmailAddress]
-        public string EmailAddress { get; set; }
 
         [Required]
         public string FirstName { get; set; }

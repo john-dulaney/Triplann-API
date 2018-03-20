@@ -45,7 +45,7 @@ namespace BagoLootAPI
         }
         
         [HttpPost]
-        public async Task<IActionResult> Create(string username, string password)
+        public async Task<IActionResult> Create(string username, string password, string firstName, string lastName)
         {
             // Hard coding role here for now
             string role = "Administrator";

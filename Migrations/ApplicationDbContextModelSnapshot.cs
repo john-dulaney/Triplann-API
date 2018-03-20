@@ -139,9 +139,6 @@ namespace Triplann.Migrations
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
-                    b.Property<string>("EmailAddress")
-                        .IsRequired();
-
                     b.Property<bool>("EmailConfirmed");
 
                     b.Property<string>("FirstName")
