@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -38,7 +39,7 @@ namespace Triplann.Controllers
 
 
         // GET Request:
-        [HttpGet("{id}", Name = "GetSinglePayment")]
+        [HttpGet("{id}", Name = "GetSingleTrip")]
         public IActionResult Get(int id)
         {
             // Check if the data matches the Model
@@ -68,8 +69,14 @@ namespace Triplann.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Trip Trip)
+        public IActionResult Post(string location, string duration, int tripTypeId)
         {
+            var requestBody = new System.IO.StreamReader(HttpContext.Request.Body).ReadToEnd();
+            var Trip = new Trip {
+                Location = location,
+                Duration = duration,
+                TripTypeId = tripTypeId
+            };
             // check to see if data matches the Model
             if (!ModelState.IsValid)
             {

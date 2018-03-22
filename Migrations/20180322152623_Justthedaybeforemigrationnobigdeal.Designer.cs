@@ -11,9 +11,10 @@ using Triplann.Data;
 namespace Triplann.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180322152623_Justthedaybeforemigrationnobigdeal")]
+    partial class Justthedaybeforemigrationnobigdeal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,9 +139,6 @@ namespace Triplann.Migrations
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired();
 
                     b.Property<bool>("EmailConfirmed");
 
