@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Triplann.Data;
 using Triplann.Models;
 
-namespace BagoLootAPI
+namespace TriplannAPI
 {
 
     [Route("/api/token")]
@@ -40,15 +40,12 @@ namespace BagoLootAPI
         [HttpPut]
         [Authorize]
         public IActionResult Put(){
-            string role = "Administrator";
-            return new ObjectResult(GenerateToken(User.Identity.Name, role));
+            return new ObjectResult(GenerateToken(User.Identity.Name));
         }
         
         [HttpPost]
         public async Task<IActionResult> Create(string username, string password, string firstName, string lastName)
         {
-            // Hard coding role here for now
-            string role = "Administrator";
 
             // Check simplistic username and password validation rules
             bool isValid = IsValidUserAndPasswordCombination(username, password);
@@ -66,7 +63,7 @@ namespace BagoLootAPI
                     // Password is correct, generate token and return it
                     if (result.Succeeded)
                     {
-                        return new ObjectResult(GenerateToken(user.UserName, role));
+                        return new ObjectResult(GenerateToken(user.UserName));
                     }
                 } else
                 {
@@ -74,8 +71,8 @@ namespace BagoLootAPI
 
                     // ApplicationUser does not exist, create one
                     user = new ApplicationUser {
-                        FirstName = "Chaz",
-                        LastName = "Vanderbilt",
+                        FirstName = firstName,
+                        LastName = lastName,
                         UserName = username,
                         NormalizedUserName = username.ToUpper(),
                         Email = username,
@@ -87,9 +84,8 @@ namespace BagoLootAPI
                     var passwordHash = new PasswordHasher<ApplicationUser>();
                     user.PasswordHash = passwordHash.HashPassword(user, password);
                     await userstore.CreateAsync(user);
-                    await userstore.AddToRoleAsync(user, role);
                     _context.SaveChanges();
-                    return new ObjectResult(GenerateToken(user.UserName, role));
+                    return new ObjectResult(GenerateToken(user.UserName));
                 }
             }
             return BadRequest();
@@ -100,14 +96,13 @@ namespace BagoLootAPI
             return !string.IsNullOrEmpty(username) && username != password;
         }
 
-        private string GenerateToken(string username, string role)
+        private string GenerateToken(string username)
         {
             var claims = new Claim[]
             {
                 new Claim(ClaimTypes.Name, username),
                 new Claim(JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
                 new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddDays(1)).ToUnixTimeSeconds().ToString()),
-                new Claim(ClaimTypes.Role, role),
             };
 
             var token = new JwtSecurityToken(

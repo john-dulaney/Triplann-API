@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -38,7 +39,7 @@ namespace Triplann.Controllers
 
 
         // GET Request:
-        [HttpGet("{id}", Name = "GetSinglePayment")]
+        [HttpGet("{id}", Name = "GetSingleTrip")]
         public IActionResult Get(int id)
         {
             // Check if the data matches the Model
@@ -70,11 +71,13 @@ namespace Triplann.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Trip Trip)
         {
+            ModelState.Remove("tripType");
             // check to see if data matches the Model
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            Trip.TripTypeId = Convert.ToInt32(Trip.TripTypeId);
             // add Trip to the table
             _context.Trip.Add(Trip);
             // Save the changes
