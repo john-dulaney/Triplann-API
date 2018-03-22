@@ -11,8 +11,8 @@ using Triplann.Data;
 namespace Triplann.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180320205721_Triplann-V3")]
-    partial class TriplannV3
+    [Migration("20180322152623_Justthedaybeforemigrationnobigdeal")]
+    partial class Justthedaybeforemigrationnobigdeal
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

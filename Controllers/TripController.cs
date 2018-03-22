@@ -69,15 +69,19 @@ namespace Triplann.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Trip Trip)
+        public IActionResult Post(string location, string duration, int tripTypeId)
         {
-            ModelState.Remove("tripType");
+            var requestBody = new System.IO.StreamReader(HttpContext.Request.Body).ReadToEnd();
+            var Trip = new Trip {
+                Location = location,
+                Duration = duration,
+                TripTypeId = tripTypeId
+            };
             // check to see if data matches the Model
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            Trip.TripTypeId = Convert.ToInt32(Trip.TripTypeId);
             // add Trip to the table
             _context.Trip.Add(Trip);
             // Save the changes

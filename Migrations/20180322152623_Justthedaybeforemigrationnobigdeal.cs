@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Triplann.Migrations
 {
-    public partial class TriplannV3 : Migration
+    public partial class Justthedaybeforemigrationnobigdeal : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

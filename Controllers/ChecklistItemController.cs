@@ -57,7 +57,12 @@ namespace Triplann.Controllers {
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post ([FromBody] ChecklistItem ChecklistItem) {
+        public IActionResult Post (string ChecklistAction, int tripTypeId) {
+            var requestBody = new System.IO.StreamReader(HttpContext.Request.Body).ReadToEnd();
+            var ChecklistItem = new ChecklistItem {
+                ChecklistAction = ChecklistAction,
+                TripTypeId = tripTypeId
+            };
             // Check if data matches the Model 
             if (!ModelState.IsValid) {
                 return BadRequest (ModelState);
