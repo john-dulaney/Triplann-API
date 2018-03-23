@@ -58,7 +58,7 @@ namespace Triplann.Controllers {
         // POST api/values
         [HttpPost]
         public IActionResult Post (string ChecklistAction, int tripTypeId) {
-            var requestBody = new System.IO.StreamReader(HttpContext.Request.Body).ReadToEnd();
+            // var requestBody = new System.IO.StreamReader(HttpContext.Request.Body).ReadToEnd();
             var ChecklistItem = new ChecklistItem {
                 ChecklistAction = ChecklistAction,
                 TripTypeId = tripTypeId

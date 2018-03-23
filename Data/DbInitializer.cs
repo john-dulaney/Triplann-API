@@ -39,7 +39,7 @@ namespace Triplann.Data {
                         new TripType {
                         WeatherType = "Tropical",
                         TravelMethod= "Plane",
-                        ActivityType = "Relax/Vacation",
+                        ActivityType = "Beach Vacation",
                         UserId = "2"
                         },
                         new TripType {
@@ -67,25 +67,25 @@ namespace Triplann.Data {
                         Location = "Alaska",
                         Duration = "1 Week",
                         TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
-                        // User = context.ApplicationUser.Single (u => u.FirstName == "Chaz")
+                        User = context.ApplicationUser.Single (u => u.FirstName == "Chaz")
                         },
                         new Trip {
                         Location = "Belize",
                         Duration = "2 Week",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
-                        // User = context.ApplicationUser.Single (u => u.FirstName == "Marko")
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        User = context.ApplicationUser.Single (u => u.FirstName == "Marko")
                         },
                         new Trip {
                         Location = "Denmark",
                         Duration = "3 Week",
                         TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
-                        // User = context.ApplicationUser.Single (u => u.FirstName == "Steve")
+                        User = context.ApplicationUser.Single (u => u.FirstName == "Steve")
                         },
                         new Trip {
                         Location = "Nashville",
                         Duration = "4 Week",
                         TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
-                        // User = context.ApplicationUser.Single (u => u.FirstName == "John")
+                        User = context.ApplicationUser.Single (u => u.FirstName == "John")
                         },
                     };
 
@@ -103,8 +103,48 @@ namespace Triplann.Data {
                         TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
                         },
                         new ChecklistItem {
+                        ChecklistAction = "Lock your house.",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Lock your house.",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Lock your house.",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Lock your house.",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Lock your house.",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Toothbrush",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Toothbrush",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Toothbrush",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Toothbrush",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
                         ChecklistAction = "Toothbrush",
                         TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Toothbrush",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
                         },
                         new ChecklistItem {
                         ChecklistAction = "Skii Jacket",
@@ -116,11 +156,155 @@ namespace Triplann.Data {
                         },
                         new ChecklistItem {
                         ChecklistAction = "Sandals",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
                         },
                         new ChecklistItem {
                         ChecklistAction = "Swimsuit",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Underwear",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Underwear",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Underwear",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Underwear",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Underwear",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Underwear",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "WristWatch",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "WristWatch",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "WristWatch",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "WristWatch",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "WristWatch",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "WristWatch",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Belt",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Belt",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Belt",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Belt",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Belt",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Belt",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Deoderant",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Deoderant",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Deoderant",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Deoderant",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Deoderant",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Deoderant",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Passport/Identification",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Passport/Identification",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Passport/Identification",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Passport/Identification",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Passport/Identification",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Passport/Identification",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Cell Phone w/ Charger",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Cell Phone w/ Charger",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Cell Phone w/ Charger",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Cell Phone w/ Charger",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Cell Phone w/ Charger",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Cell Phone w/ Charger",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
                         },
                         new ChecklistItem {
                         ChecklistAction = "SKii Boots",
@@ -128,15 +312,123 @@ namespace Triplann.Data {
                         },
                         new ChecklistItem {
                         ChecklistAction = "Sunscreen",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Relax/Vacation").TripTypeId,
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Sunscreen",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Sunscreen",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Sunscreen",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Sunscreen",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Sunscreen",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
                         },
                         new ChecklistItem {
                         ChecklistAction = "Hair Dryer",
-                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Hair Dryer",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Hair Dryer",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
                         },
                         new ChecklistItem {
                         ChecklistAction = "Fleece Jacket",
                         TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Fleece Jacket",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Fleece Jacket",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Dog Care Taken car of",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Dog Care Taken car of",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Dog Care Taken car of",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Dog Care Taken car of",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Dog Care Taken car of",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Dog Care Taken car of",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Make Arrangements for lodging",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Make Arrangements for lodging",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Make Arrangements for lodging",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Make Arrangements for lodging",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Make Arrangements for lodging",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Make Arrangements for lodging",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Emergency Currency",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Skii").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Emergency Currency",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Cruise").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Emergency Currency",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Beach Vacation").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Emergency Currency",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Mountain Climbing").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Emergency Currency",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Business").TripTypeId,
+                        },
+                        new ChecklistItem {
+                        ChecklistAction = "Emergency Currency",
+                        TripTypeId = context.TripType.Single (t => t.ActivityType == "Backpacking").TripTypeId,
                         },
                     };
 
